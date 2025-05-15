@@ -1,6 +1,11 @@
 # --- Path and fpath setup (optional, for plugin managers) ---
 # If using a plugin manager, it will handle fpath. Otherwise, add plugin paths manually if needed.
 
+# Add ~/.local/bin to PATH if it exists and is not already in PATH
+if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # oh-my-posh
 # Install from https://ohmyposh.dev/docs/installation
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
@@ -9,9 +14,14 @@ eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
 # Install from https://atuin.sh/docs/installation/
 # eval "$(atuin init zsh)"
 
+# mise (shell integration)
+if command -v mise >/dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
 # zoxide
-# Install from https://github.com/ajeetdsouza/zoxide
-# eval "$(zoxide init zsh)"
+# Install from https://github.com/ajeetdsouza/zoxide, managed by mise
+eval "$(zoxide init zsh)"
 
 # --- History Options ---
 HISTSIZE="10000"
@@ -85,16 +95,32 @@ alias vi='nvim'
 alias vim='nvim'
 
 # --- Plugin Initialization (uncomment as needed) ---
-# source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-# source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-# eval "$(atuin init zsh)"
-# eval "$(zoxide init zsh)"
+# Zinit will handle plugin loading if zinit.zsh is sourced correctly.
 
 # --- Ghostty Integration (optional) ---
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# --- Zinit Plugin Manager Setup (manual installation) ---
+# Zinit installation is handled by a run_once script.
+# This section just sources it if available and declares plugins.
 
-source /home/linuxbrew/.linuxbrew/opt/zinit/zinit.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Source Zinit if it has been installed
+if [ -f "${ZINIT_HOME}/zinit.zsh" ]; then
+  source "${ZINIT_HOME}/zinit.zsh"
+
+  # Load Zinit plugins (will be installed by Zinit if missing on first run)
+  # Using 'ice depth"1" lucid' for shallow clones and faster loading.
+  # echo "Loading Zinit plugins..."
+  zinit ice depth"1" lucid
+  zinit light zsh-users/zsh-autosuggestions
+
+  zinit ice depth"1" lucid
+  zinit light zsh-users/zsh-syntax-highlighting
+  # echo "Zinit plugins loading requested."
+else
+  echo "WARNING: zinit.zsh not found at ${ZINIT_HOME}/zinit.zsh. Zinit plugins will not load."
+fi

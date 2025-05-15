@@ -37,13 +37,13 @@ echo "Detected architecture: $ARCH, using OMP_ARCH: $OMP_ARCH"
 # Simpler: use the direct install command from their docs if available and suitable.
 # From https://ohmyposh.dev/docs/installation/linux
 echo "Downloading oh-my-posh for $OMP_ARCH..."
-if sudo curl -s https://ohmyposh.dev/install.sh | sudo bash -s -- -d "$TARGET_DIR"; then
+if curl -s https://ohmyposh.dev/install.sh | bash -s -- -d "$TARGET_DIR"; then
   echo "oh-my-posh installed successfully to $TARGET_FILE."
   # The install.sh script should handle making it executable.
   # Just in case:
   if [ ! -x "$TARGET_FILE" ]; then
     echo "Making $TARGET_FILE executable..."
-    sudo chmod +x "$TARGET_FILE"
+    sudo -n chmod +x "$TARGET_FILE"
   fi
 else
   echo "Error: oh-my-posh installation failed."
