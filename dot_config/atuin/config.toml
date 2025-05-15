@@ -1,0 +1,42 @@
+# Atuin config.toml
+
+# How often to automatically sync history (default "1h")
+# Set to "0" to disable auto sync
+sync_frequency = "10m"
+
+# Default search mode (default "prefix")
+# Options: prefix, fulltext, fuzzy, skim
+search_mode = "fuzzy"
+
+# Default filter mode (default "global")
+# Options: global, host, session, directory
+filter_mode = "global"
+
+# UI style (default "auto")
+# Options: auto, full, compact
+style = "compact"
+
+# Show preview of the selected command (default true)
+show_preview = true
+
+# Inline height for the TUI, in percentage of terminal height (default "40%")
+# Can also be a fixed number of lines, e.g., "10"
+inline_height = "30%"
+
+# Date display dialect (default "us")
+# Options: us, uk, iso
+dialect = "us"
+
+# Automatically sync on shell exit (default true)
+# This is good for ensuring your latest history is backed up if you use a sync server.
+auto_sync = true
+
+# Check for updates on startup (default true)
+update_check = true
+
+# Keybinding settings could also go here if you want to customize them beyond defaults,
+# but often the defaults or shell-specific bindings (like Ctrl-R) are sufficient to start.
+
+# Example for setting a sync server (leave commented out if not using one)
+# sync_address = "https://your-atuin-server.com"
+# key_path = "~/.config/atuin/key" # Or wherever your private key is

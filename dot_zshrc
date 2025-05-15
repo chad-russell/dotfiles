@@ -10,10 +10,6 @@ fi
 # Install from https://ohmyposh.dev/docs/installation
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
 
-# atuin
-# Install from https://atuin.sh/docs/installation/
-# eval "$(atuin init zsh)"
-
 # mise (shell integration)
 if command -v mise >/dev/null; then
   eval "$(mise activate zsh)"
@@ -124,7 +120,6 @@ if [ -f "${ZINIT_HOME}/zinit.zsh" ]; then
   zinit ice as"command" from"gh-r" bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin" \
     atclone"./atuin init zsh > init.zsh; ./atuin gen-completions --shell zsh > _atuin" \
     atpull"%atclone" src"init.zsh"
-  zinit light atuinsh/atuin
   # echo "Zinit plugins loading requested."
 else
   echo "WARNING: zinit.zsh not found at ${ZINIT_HOME}/zinit.zsh. Zinit plugins will not load."
