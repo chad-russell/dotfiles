@@ -1,0 +1,98 @@
+# --- Path and fpath setup (optional, for plugin managers) ---
+# If using a plugin manager, it will handle fpath. Otherwise, add plugin paths manually if needed.
+
+# oh-my-posh
+# Install from https://ohmyposh.dev/docs/installation
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
+
+# atuin
+# Install from https://atuin.sh/docs/installation/
+# eval "$(atuin init zsh)"
+
+# zoxide
+# Install from https://github.com/ajeetdsouza/zoxide
+# eval "$(zoxide init zsh)"
+
+# --- History Options ---
+HISTSIZE="10000"
+SAVEHIST="10000"
+HISTFILE="$HOME/.zsh_history"
+mkdir -p "$(dirname "$HISTFILE")"
+
+setopt HIST_FCNTL_LOCK
+unsetopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+unsetopt HIST_IGNORE_ALL_DUPS
+unsetopt HIST_SAVE_NO_DUPS
+unsetopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+unsetopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY
+unsetopt EXTENDED_HISTORY
+setopt autocd
+
+# --- Keybindings and Options ---
+bindkey '^f' autosuggest-accept;
+set -o vi;
+bindkey '^P' up-line-or-search;
+bindkey '^N' down-line-or-search;
+
+# --- Functions ---
+function mkcd {
+    mkdir "$1";
+    cd "$1";
+}
+
+function homeup {
+    echo "Run your home-manager switch command here if needed."
+}
+
+function nixup {
+    echo "Run your nixos-rebuild command here if needed."
+}
+
+function copy_caddy_config {
+    scp root@reverse-proxy:Caddyfile ~/nix/Caddyfile
+}
+
+function killport {
+    lsof -ti:"$1" | xargs kill -9
+}
+
+function ssh_reload {
+    ssh-add ~/.ssh/id_rsa;
+}
+
+function nixedit {
+    echo "Open your Nix config here if needed."
+}
+
+function browser-tools-helper {
+    npx -y @agentdeskai/browser-tools-server@1.2.0
+}
+
+whichport() {
+    sudo lsof -i -P | grep LISTEN | grep "$1"
+}
+
+# --- Aliases ---
+alias pr='pnpm run'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias e='eza'
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+
+# --- Plugin Initialization (uncomment as needed) ---
+# source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# eval "$(atuin init zsh)"
+# eval "$(zoxide init zsh)"
+
+# --- Ghostty Integration (optional) ---
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+  source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+fi
+
+source /home/linuxbrew/.linuxbrew/opt/zinit/zinit.zsh
