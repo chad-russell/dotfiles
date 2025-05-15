@@ -5,4 +5,4 @@
 # which will be symlinked to the destination directory by chezmoi.
 # brew bundle --file ~/.Brewfile # This is an alternative if symlinking is an issue or for testing.
 
-brew bundle --file "{{ .chezmoi.sourceDir }}/Brewfile" --no-lock
+brew bundle --file "{{ .chezmoi.sourceDir }}/Brewfile"
