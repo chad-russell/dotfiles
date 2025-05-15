@@ -120,6 +120,11 @@ if [ -f "${ZINIT_HOME}/zinit.zsh" ]; then
 
   zinit ice depth"1" lucid
   zinit light zsh-users/zsh-syntax-highlighting
+  
+  zinit ice as"command" from"gh-r" bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin" \
+    atclone"./atuin init zsh > init.zsh; ./atuin gen-completions --shell zsh > _atuin" \
+    atpull"%atclone" src"init.zsh"
+  zinit light atuinsh/atuin
   # echo "Zinit plugins loading requested."
 else
   echo "WARNING: zinit.zsh not found at ${ZINIT_HOME}/zinit.zsh. Zinit plugins will not load."

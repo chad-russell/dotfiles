@@ -3,9 +3,7 @@
   "transient_prompt": {
     "template": "❯ ",
     "foreground": "#B48EAD",
-    "foreground_templates": [
-      "{{ if gt .Code 0 }}#BF616A{{ end }}"
-    ]
+    "foreground_templates": ["{{ if gt .Code 0 }}#BF616A{{ end }}"]
   },
   "console_title_template": "{{if .Root}}(Admin){{end}} {{.PWD}}",
   "blocks": [
@@ -49,22 +47,6 @@
       "segments": [
         {
           "properties": {
-            "cache_duration": "none"
-          },
-          "template": "\udb84\udd05 ",
-          "foreground": "blue",
-          "background": "transparent",
-          "type": "nix-shell",
-          "style": "powerline"
-        }
-      ]
-    },
-    {
-      "type": "prompt",
-      "alignment": "left",
-      "segments": [
-        {
-          "properties": {
             "branch_ahead_icon": "<#88C0D0>\u21e1 </>",
             "branch_behind_icon": "<#88C0D0>\u21e3 </>",
             "branch_icon": "",
@@ -94,9 +76,7 @@
           "foreground": "#B48EAD",
           "type": "status",
           "style": "plain",
-          "foreground_templates": [
-            "{{ if gt .Code 0 }}#BF616A{{ end }}"
-          ]
+          "foreground_templates": ["{{ if gt .Code 0 }}#BF616A{{ end }}"]
         }
       ],
       "newline": true

@@ -41,7 +41,7 @@ fi
 echo "mise command is available in PATH."
 mise --version
 
-# --- Use mise to install zoxide ---
+# --- Use mise to install global tools ---
 echo "Using mise to install/activate zoxide@latest globally..."
 if mise use --global zoxide@latest; then
   echo "mise successfully configured zoxide."
@@ -50,5 +50,21 @@ else
   exit 1
 fi
 
-echo "mise and zoxide installation/configuration script completed."
+echo "Using mise to install/activate ripgrep@latest globally..."
+if mise use --global ripgrep@latest; then
+  echo "mise successfully configured ripgrep."
+else
+  echo "Error: 'mise use --global ripgrep@latest' command failed."
+  exit 1
+fi
+
+echo "Using mise to install/activate eza@latest globally..."
+if mise use --global eza@latest; then
+  echo "mise successfully configured eza."
+else
+  echo "Error: 'mise use --global eza@latest' command failed."
+  exit 1
+fi
+
+echo "mise and global tools installation/configuration script completed."
 exit 0
