@@ -1,5 +1,5 @@
 brew "zinit"
-brew "oh-my-posh"
+brew "oh-my-posh", args: ["--build-from-source"]
 brew "jq"
 brew "eza"
 brew "zoxide"
