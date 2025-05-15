@@ -1,7 +1,3 @@
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
-
 brew "jq"
 brew "eza"
 brew "zoxide"
