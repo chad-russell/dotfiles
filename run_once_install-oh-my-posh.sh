@@ -2,7 +2,7 @@
 
 # Script to install Oh My Posh if not already present
 
-TARGET_DIR="/usr/local/bin"
+TARGET_DIR="~/.local/bin"
 TARGET_FILE="$TARGET_DIR/oh-my-posh"
 
 # Check if oh-my-posh is already installed
