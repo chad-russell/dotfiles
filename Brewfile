@@ -1,3 +1,5 @@
+brew "zinit"
+brew "oh-my-posh"
 brew "jq"
 brew "eza"
 brew "zoxide"
